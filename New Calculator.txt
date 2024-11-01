@@ -1,0 +1,24 @@
+sum_addition = lambda n1, n2 : n1+n2 
+sum_substraction = lambda n1, n2 : n1-n2
+sum_multiplication = lambda n1, n2 : n1*n2
+sum_division = lambda n1, n2 : n1/n2
+
+my_calculator ={"+" :sum_addition,"-" : sum_substraction,"/" : sum_division,"*" :sum_multiplication}
+
+quitter = False
+while(quitter == False):
+
+
+# user will choose the operation
+  
+  n1 = int(input("enter the first number : "))
+  o = input("enter your choice : ")
+  n2 = int(input("enter the second number : "))
+# user will choose the numbers
+
+
+  result =my_calculator[o](n1,n2)
+  print("the result is : ",result)
+  cont = input("do you want to continue : ")
+  if cont == "no":
+    quitter = True

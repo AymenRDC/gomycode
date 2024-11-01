@@ -1,0 +1,69 @@
+choice an item
+
+from google.colab import output
+import time
+shopping_cart = []
+total = 0
+run = True
+output.clear
+
+while run:
+
+  print( """
+1-Add 
+2-Delete 
+3-View 
+4-Exist""")
+  operation = int(input ("choose an operation  : "))
+  if operation == 1 :
+    print("""
+    1-PC
+    2-Phone
+    3-mouse
+    4-keyboard
+    """)
+    item = input ("enter the item number : " )
+    if item == "1" :
+      shopping_cart.append("PC")
+      total = total + 1000
+      print (total)
+    elif item == "2" :
+      shopping_cart.append("Phone")
+      total = total + 500
+      print (total)
+    elif item == "3" :
+      shopping_cart.append("mouse")
+      total = total + 100
+      print (total)
+    elif item == "4" :
+      shopping_cart.append("keyboard")
+      print (total)
+      total = total + 200
+      print (total)
+    else  :
+      print ("item do not exist")
+      run = False
+
+  elif operation == 2 : 
+      print (shopping_cart)
+      delete_item = input ("enter the item ID : ")
+      if shopping_cart[int(delete_item)] == "PC" :
+        total = total - 1000
+      elif shopping_cart[int(delete_item)] == "Phone" :
+        total = total - 500
+      elif shopping_cart[int(delete_item)] == "mouse" :
+        total = total - 100
+      elif shopping_cart[int(delete_item)] == "keyboard" :
+        total = total - 200
+      else :
+        print ("item do not exist")
+      
+      shopping_cart.remove(delete_item)
+      print (shopping_cart)
+
+  elif operation == 3 :
+      print (shopping_cart)
+
+  elif operation == 4 :
+      run = False
+      print ("bye")

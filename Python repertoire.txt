@@ -1,0 +1,32 @@
+repertoir = {}
+run = True
+while (run) :
+  print("""
+1-add a person and his age
+2-delete a person
+3-change the number of a person
+4-view the number of a person
+5-exit
+""")
+  operator = int(input("choose an operator"))
+
+  if operator == 1:
+    key = input("enter the name : ")
+    value = input("enter the number : ")
+    repertoir[key] = value
+    print(repertoir)
+  elif operator ==2:
+    key = input("enter the name : ")
+    del repertoir[key]
+    print(repertoir)
+  elif operator == 3:
+    key = input("enter the name : ")
+    value = input("enter the new number : ")
+    repertoir[key] = value
+    print(repertoir)
+  elif operator == 4:
+    key = input("enter the name : ")
+    print(key ," : ", repertoir[key])
+  elif operator == 5:
+    print("exiting...")
+    run = False

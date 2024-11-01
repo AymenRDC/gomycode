@@ -1,0 +1,45 @@
+3//**
+
+SELECT customer_name,product_name,quantity,price, quantity*price as total_price from Orders
+INNER JOIN Customer on Customer.customer_id= Orders.Customer_id
+INNER JOIN Product on Product.Product_id=Orders.Product_id
+GROUP BY customer_name HAVING product_name  in ('widget','gadget') and COUNT (DISTINCT product_name)>1
+
+4//**
+
+SELECT customer_name,product_name,quantity,price, quantity*price as total_price from Orders
+INNER JOIN Customer on Customer.customer_id= Orders.Customer_id
+INNER JOIN Product on Product.Product_id=Orders.Product_id
+GROUP BY customer_name HAVING product_name in  ('widget') and COUNT (DISTINCT product_name)>1
+ 
+ 5//**
+ 
+SELECT customer_name,product_name,quantity,price, quantity*price as total_price from Orders
+INNER JOIN Customer on Customer.customer_id= Orders.Customer_id
+INNER JOIN Product on Product.Product_id=Orders.Product_id
+GROUP BY customer_name HAVING product_name in ('gadget') and COUNT (DISTINCT product_name)>1
+
+6//**
+select * from Product
+
+SELECT customer_name,product_name,quantity,price, quantity*price as total_price from Orders
+INNER JOIN Customer on Customer.customer_id= Orders.Customer_id
+INNER JOIN Product on Product.Product_id=Orders.Product_id
+WHERE product_name='doohickey'
+
+7//**
+
+SELECT customer_name,product_name, sum (quantity) as  total_order from Orders
+INNER JOIN Customer on Customer.customer_id= Orders.Customer_id
+INNER JOIN Product on Product.Product_id=Orders.Product_id
+WHERE product_name in('widget','gadget')
+GROUP by customer_name
+
+8//**
+
+SELECT customer_name,customer_id,product_name,quantity, sum (quantity) as  total_order from Orders
+INNER JOIN Customer on Customer.customer_id= Orders.Customer_id
+INNER JOIN Product on Product.Product_id=Orders.Product_id
+WHERE COUNT (DISTINCT customer_id) >1
+GROUP by product_name
+

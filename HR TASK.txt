@@ -1,0 +1,120 @@
+1//**
+
+SELECT * FROM countries;
+SELECT * FROM departments;
+SELECT * FROM employees;
+SELECT * FROM jobs;
+SELECT * FROM locations;
+SELECT * FROM regions;
+
+2//**
+
+SELECT * from departments
+GROUP BY department_id HAVING COUNT (DISTINCT department_id)
+
+SELECT COUNT(department_id) FROM departments
+
+3//**
+
+SELECT department_name,COUNT(employee_id) from departments
+INNER JOIN employees on employees.department_id=departments.department_id
+GROUP BY department_name
+
+4//**
+
+SELECT first_name,last_name,department_name from departments
+INNER JOIN employees on employees.department_id=departments.department_id
+ORDER BY first_name ASC 
+
+5//**
+
+SELECT job_title,max_salary FROM jobs
+WHERE max_salary >10000 and max_salary <25000
+
+6//**
+
+SELECT job_title,min_salary FROM jobs
+WHERE min_salary > 6000
+
+7//**
+
+SELECT avg (max_salary), avg (min_salary) FROM jobs
+
+8//**
+
+SELECT country_name,region_name FROM countries
+INNER JOIN regions on regions.region_id=countries.region_id
+INNER JOIN locations on locations.country_id=countries.country_id
+ORDER by country_name
+
+9//**
+A//**
+SELECT first_name,last_name, max(salary) from employees
+B//**
+SELECT first_name,last_name, min(salary) from employees
+C//**
+SELECT avg(salary) from employees
+D//**
+SELECT first_name,last_name,salary from employees
+ORDER BY salary DESC
+E//**
+SELECT first_name,last_name, salary FROM employees
+ORDER by salary DESC LIMIT 5 
+F//**
+SELECT first_name,last_name, salary FROM employees
+ORDER by salary DESC LIMIT 2 OFFSET 1
+ 
+10//**
+A//**
+SELECT first_name,last_name, job_title,salary from employees
+INNER join jobs on jobs.job_id=employees.job_id
+WHERE salary > (SELECT avg(salary)from employees)
+B//**
+SELECT first_name,last_name, job_title,salary, cast (salary as real )/(SELECT sum(salary) as PCT_of_salary from employees )
+FROM employees
+INNER join jobs on jobs.job_id=employees.job_id
+WHERE salary > (SELECT avg(salary)from employees)
+
+11//**
+
+SELECT first_name,last_name, job_title,salary from employees
+INNER join jobs on jobs.job_id=employees.job_id
+WHERE salary > (SELECT salary from employees WHERE first_name='Matthew' and last_name='Weiss')
+
+12//**
+
+SELECT department_name,region_name FROM countries
+INNER JOIN regions on regions.region_id=countries.region_id
+INNER JOIN locations on locations.country_id=countries.country_id
+INNER JOIN departments on departments.location_id=locations.location_id
+WHERE department_name='Human Resources'
+
+13//**
+
+SELECT departments.location_id,department_id,department_name,region_name FROM countries
+INNER JOIN regions on regions.region_id=countries.region_id
+INNER JOIN locations on locations.country_id=countries.country_id
+INNER JOIN departments on departments.location_id=locations.location_id
+WHERE departments.location_id = (SELECT departments.location_id FROM departments WHERE department_name=1700)
+
+14//**
+
+SELECT count(hire_date),hire_date, employee_id FROM employees
+WHERE hire_date GROUP BY hire_date HAVING COUNT (DISTINCT employee_id) 
+ORDER by count(hire_date) DESC limit 1
+
+
+15//**
+
+SELECT first_name,last_name,department_name FROM employees
+INNER JOIN departments on departments.department_id=employees.department_id
+WHERE department_name= (SELECT department_name FROM employees
+INNER JOIN departments on departments.department_id=employees.department_id
+                       where first_name='Ismael')
+
+
+16//**
+
+SELECT count(*) from employees
+INNER JOIN jobs on employees.job_id=jobs.job_id
+WHERE job_title='President'
