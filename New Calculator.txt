@@ -1,8 +1,4 @@
-sum_addition = lambda n1, n2 : n1+n2 
-sum_substraction = lambda n1, n2 : n1-n2
-sum_multiplication = lambda n1, n2 : n1*n2
-sum_division = lambda n1, n2 : n1/n2
-
+s
 my_calculator ={"+" :sum_addition,"-" : sum_substraction,"/" : sum_division,"*" :sum_multiplication}
 
 quitter = False
