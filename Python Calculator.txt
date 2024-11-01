@@ -1,43 +1,24 @@
-from google.colab import output
-import time
+sum_addition = lambda n1, n2 : n1+n2 
+sum_substraction = lambda n1, n2 : n1-n2
+sum_multiplication = lambda n1, n2 : n1*n2
+sum_division = lambda n1, n2 : n1/n2
+
+my_calculator ={"+" :sum_addition,"-" : sum_substraction,"/" : sum_division,"*" :sum_multiplication}
 
 quitter = False
 while(quitter == False):
 
-  print("""
-choose an operation :
-  1-addition
-  2-substraction
-  3-multiplication
-  4-division
-  5-exit""")
+
 # user will choose the operation
-  operation = int(input("your choice : "))
+  
+  n1 = int(input("enter the first number : "))
+  o = input("enter your choice : ")
+  n2 = int(input("enter the second number : "))
 # user will choose the numbers
-  n1 = float(input("give me a number : "))
-  n2 = float(input("give me a number : "))
 
-  if operation == 1:
-  #addition
-    res = n1 + n2
-    print("the result is : ", res)
-  elif operation == 2:
-  #substruction
-    res = n1 - n2
-    print("the result is : ", res)
-  elif operation == 3:
-  #multiplication
-    res = n1 * n2
-    print("the result is : ", res)
-  elif operation == 4:
-  #division
-    res = n1 / n2
-    print("the result is : ", res)
-  elif operation == 5:
-    # exit the calculator
+
+  result =my_calculator[o](n1,n2)
+  print("the result is : ",result)
+  cont = input("do you want to continue : ")
+  if cont == "no":
     quitter = True
-  else :
-    print("wrong choice, try again please")
-  time.sleep(4)
-  output.clear()
-
